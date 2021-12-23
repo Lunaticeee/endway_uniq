@@ -1,7 +1,10 @@
-const medium_nickname = document.querySelector('#medium')
-const nicks_array = document.querySelectorAll(".nickname")
-const main_btn = document.querySelector('#main-btn') 
-const textarea = document.querySelector('#styles-area')
+const medium_nickname = document.querySelector('#medium');
+const nicks_array = document.querySelectorAll(".nickname");
+const main_btn = document.querySelector('#main-btn');
+const prev_btn = document.querySelector('#prev-btn');
+const textarea = document.querySelector('#styles-area');
+
+var prevStyle = new Map();
 
 medium_nickname.onclick = function() {
     let question = prompt('Введите ник');
@@ -14,18 +17,28 @@ medium_nickname.onclick = function() {
 
 // Замена стилей при клике и добавление стиля в TextArea
 main_btn.onclick = () => {
-    textarea.innerHTML = ''
-    const color = randint(0, 1)
-    const shadow = randint(0, 1)
-    const background = randint(0, 1)
 
-    const colorAttr = random_color('rgb')
-    const shadowAttr = textShadow()
-    const backgroundAttr = backgroundFunc()
+    // Добавление предыдущего стиля в Map
+    prevStyle.delete('col_style')
+    prevStyle.delete('sh_style')
+    prevStyle.delete('bg_style')
 
-    let col_style = ''
-    let sh_style = ''
-    let bg_style = ''
+    prevStyle.set('col_style', nicks_array[0].style.color);
+    prevStyle.set('sh_style', nicks_array[0].style.textShadow);
+    prevStyle.set('bg_style', nicks_array[0].style.background);
+
+    textarea.innerHTML = '';
+    const color = randint(0, 1);
+    const shadow = randint(0, 1);
+    const background = randint(0, 1);
+
+    const colorAttr = random_color('rgb');
+    const shadowAttr = textShadow();
+    const backgroundAttr = backgroundFunc();
+
+    let col_style = '';
+    let sh_style = '';
+    let bg_style = '';
 
     nicks_array.forEach(nick => {
         nick.style = "" // Убирает стили перед новыми
@@ -62,6 +75,43 @@ main_btn.onclick = () => {
     if (bg_style != '') {
         textarea.innerHTML += `${bg_style}\n`
     }   
+}
+
+// Возврат предыдущего стиля
+prev_btn.onclick = () => {
+    nicks_array.forEach(nick => {
+        nick.style.removeProperty('color')
+        nick.style.removeProperty('text-shadow')
+        nick.style.removeProperty('background')
+        nick.style.removeProperty('-webkit-background-clip')
+        nick.style.removeProperty('-webkit-text-fill-color')
+        nick.style.removeProperty('background-clip')
+
+        if (!!prevStyle.get('col_style')) {
+            nick.style.color = prevStyle.get('col_style')
+        }
+        if (!!prevStyle.get('sh_style')) {
+            nick.style.textShadow = prevStyle.get('sh_style')
+        }
+        if (!!prevStyle.get('bg_style')) {
+            nick.style.background = prevStyle.get('bg_style').replace('text', '')
+            nick.style.setProperty('-webkit-background-clip', 'text')
+            nick.style.setProperty('-webkit-text-fill-color', 'transparent')
+        }
+    })
+
+    textarea.innerHTML = ''
+
+    if (!!nicks_array[0].style.color) {
+        textarea.innerHTML += `color: ${nicks_array[0].style.color}\n`
+    }
+    if (!!nicks_array[0].style.textShadow) {
+        textarea.innerHTML += `text-shadow: ${nicks_array[0].style.textShadow}\n`
+    }
+    if (!!nicks_array[0].style.background) {
+        console.log(nicks_array[0].style.background)
+        textarea.innerHTML += `background: ${nicks_array[0].style.background}\n-webkit-background-clip: text;\n-webkit-text-fill-color: transparent;`
+    }
 }
 
 // функция выбора рандомного числа

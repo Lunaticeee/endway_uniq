@@ -73,13 +73,13 @@ a:hover {
     margin-left: 50px;
 }
 
-#main-btn {
+.btn {
     font-size: 13px;
     font-weight: 600;
     text-decoration: none;
     border-style: none;
     border-radius: 3px;
-    color: #f5f5f5;
+    color: rgb(214, 214, 214);
     background-color: rgb(34,142,93);
     transition: background 0.8s;
     overflow: hidden;
@@ -87,12 +87,26 @@ a:hover {
     margin-top: 20px;
 }
 
-#main-btn:hover {
+.btn:focus {
+    box-shadow: none;
+}
+
+.btn:hover {
+    color: rgb(214, 214, 214);
     background: rgb(0, 186, 120) radial-gradient(circle, transparent 1%, rgb(0, 186, 120) 1%) center/15000%;
 }
 
-#main-btn:active {
+.btn:active {
     transition: background 0s;
+}
+
+#prev-btn {
+    background-color: #303030;
+}
+
+#prev-btn:hover {
+    color: #f5f5f5;
+    background: #303030
 }
 
 .footer {
