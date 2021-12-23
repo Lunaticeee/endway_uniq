@@ -1,6 +1,6 @@
 # lolzteam_uniq
 
-<h1>Генератор уников для сайта <a href="lolz.guru">lolz.guru</h1>
+<h2>Генератор уников для сайта <a href="lolz.guru">lolz.guru</h2>
 <p>Обновления на 23.12</p>
  <ul>
 	 <li>Обновлен дизайн сайта</li>
