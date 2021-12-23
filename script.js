@@ -96,7 +96,7 @@ function linearGradient() {
     let string = `linear-gradient(${randint(-360, 360)}deg, `
     
     if (type === 1) { // Градиент с неограниченным кол-вом цветов
-        let num = randint(1, 10)
+        let num = randint(1, 5)
         for (let i = 0; i < num + 1; i++) {
             if (i != num) {
                 string += random_color('rgba') + ", "
@@ -118,7 +118,7 @@ function radialGradient() {
     let string = "radial-gradient("
 
     if (type === 1) { // Градиент с неограниченным кол-вом цветов
-        let num = randint(1, 5)
+        let num = randint(1, 4)
         for (let i = 0; i < num + 1; i++) {
             if (i != num) {
                 string += random_color('rgba') + ", "
@@ -155,7 +155,7 @@ function textShadow() {
 
 function backgroundFunc() {
     let string = ""
-    const num = randint(1, 5)
+    const num = randint(1, 3)
     const type = randint(1, 4)
     if (type == 1) { // Линейные градиенты
         for (let i =0; i < num + 1; i++) {
