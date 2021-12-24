@@ -1,11 +1,71 @@
 const medium_nickname = document.querySelector('#medium');
 const nicks_array = document.querySelectorAll(".nickname");
+
 const main_btn = document.querySelector('#main-btn');
 const prev_btn = document.querySelector('#prev-btn');
+const settings_btn = document.querySelector('#settings-btn')
+
 const textarea = document.querySelector('#styles-area');
 
+
+// Кнопки настроек
+let changeColorButton
+let changeShadowButton
+let changeBackgroundButton
+
+let color_is_active = 0
+let shadow_is_active = 1
+let background_is_active = 1
+
+
+document.querySelectorAll('.settings span').forEach(settings_button => {
+    if (settings_button.innerText == 'color') {
+        console.log(1)
+        changeColorButton = settings_button
+        color_is_active = 0
+    }
+    if (settings_button.innerHTML === 'shadow') {
+        changeShadowButton = settings_button
+        shadow_is_active = 1
+    }
+    if (settings_button.innerHTML === 'background') {
+        changeBackgroundButton = settings_button
+        background_is_active = 1
+    }
+})
+
+changeColorButton.onclick = () => {
+    if (color_is_active === 1) {
+        color_is_active = 0
+        changeColorButton.classList.remove('btn_active')
+    } else {
+        color_is_active = 1
+        changeColorButton.classList.add('btn_active')
+    }
+}
+changeShadowButton.onclick = () => {
+    if (shadow_is_active === 1) {
+        shadow_is_active = 0
+        changeShadowButton.classList.remove('btn_active')
+    } else {
+        shadow_is_active = 1
+        changeShadowButton.classList.add('btn_active')
+    }
+}
+changeBackgroundButton.onclick = () => {
+    if (background_is_active === 1) {
+        background_is_active = 0
+        changeBackgroundButton.classList.remove('btn_active')
+    } else {
+        background_is_active = 1
+        changeBackgroundButton.classList.add('btn_active')
+    }
+}
+
+// Словарь с предыдущем стилем
 var prevStyle = new Map();
 
+// Смена ника при нажатии на средний span с ником
 medium_nickname.onclick = function() {
     let question = prompt('Введите ник');
     if (question.length > 0) {
@@ -28,9 +88,6 @@ main_btn.onclick = () => {
     prevStyle.set('bg_style', nicks_array[0].style.background);
 
     textarea.innerHTML = '';
-    const color = randint(0, 1);
-    const shadow = randint(0, 1);
-    const background = randint(0, 1);
 
     const colorAttr = random_color('rgb');
     const shadowAttr = textShadow();
@@ -42,26 +99,29 @@ main_btn.onclick = () => {
 
     nicks_array.forEach(nick => {
         nick.style = "" // Убирает стили перед новыми
-        if (color === 1 && background != 1) {
+        if (color_is_active === 1) {
             nick.style.color = colorAttr
             col_style = `color: ${colorAttr}`
         }
-        if (shadow === 1) {
+        if (shadow_is_active === 1) {
             nick.style.textShadow = shadowAttr
             sh_style = `text-shadow: ${shadowAttr}`
         }
-        if (background === 1) {
+        if (background_is_active === 1) {
             nick.style.background = backgroundAttr
             nick.style.setProperty('-webkit-background-clip', 'text')
             nick.style.setProperty('-webkit-text-fill-color', 'transparent')
             bg_style = `background: ${backgroundAttr}\n-webkit-background-clip: text;\n-webkit-text-fill-color: transparent;`
         }
-        if (color != 1 && shadow != 1 && background != 1) {
+        if (color_is_active === 1 && background_is_active === 1) {
             sh_style = `text-shadow: ${shadowAttr}`
             nick.style.background = backgroundAttr
             nick.style.setProperty('-webkit-background-clip', 'text')
             nick.style.setProperty('-webkit-text-fill-color', 'transparent')
             bg_style = `background: ${backgroundAttr}\n-webkit-background-clip: text;\n-webkit-text-fill-color: transparent;`
+        }
+        if (color_is_active === 0 && background_is_active === 0 && shadow_is_active === 0) {
+            textarea.innerHTML = 'Выбери хотя бы один атрибут!'
         }
     })
 
@@ -241,4 +301,14 @@ function backgroundFunc() {
 textarea.onclick = () => {
     textarea.select()
     document.execCommand('copy')
+}
+
+// Открытие поля настроек
+settings_btn.onclick = () => {
+    const settings = document.querySelector('#settings')
+    if (settings.classList.contains('hide')) {
+        settings.classList.remove('hide')
+    } else {
+        settings.classList.add('hide')
+    }
 }
