@@ -236,3 +236,9 @@ function backgroundFunc() {
 
     return string
 }
+
+// Копирование стиля при клике на TextArea
+textarea.onclick = () => {
+    textarea.select()
+    document.execCommand('copy')
+}
