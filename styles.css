@@ -22,6 +22,24 @@ body {
      /* Запрещение выделения */
 }
 
+/* Снег */
+
+.fa-snowflake {
+    font-size: 8px;
+    animation: fall 8s linear forwards;
+    color: #fff;
+    position: absolute;
+    top: -20px;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(105vh);
+    }
+}
+
+/* Снег */
+
 textarea:focus-visible {
     outline: rgb(34,142,93) solid 2px;
 }
