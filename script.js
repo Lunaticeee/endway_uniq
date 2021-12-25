@@ -156,14 +156,14 @@ prev_btn.onclick = () => {
     textarea.innerHTML = ''
 
     if (!!nicks_array[0].style.color) {
-        textarea.innerHTML += `color: ${nicks_array[0].style.color}\n`
+        textarea.innerHTML += `color: ${nicks_array[0].style.color};\n`
     }
     if (!!nicks_array[0].style.textShadow) {
-        textarea.innerHTML += `text-shadow: ${nicks_array[0].style.textShadow}\n`
+        textarea.innerHTML += `text-shadow: ${nicks_array[0].style.textShadow};\n`
     }
     if (!!nicks_array[0].style.background) {
         console.log(nicks_array[0].style.background)
-        textarea.innerHTML += `background: ${nicks_array[0].style.background}\n-webkit-background-clip: text;\n-webkit-text-fill-color: transparent;`
+        textarea.innerHTML += `background: ${nicks_array[0].style.background.replace('text', '')};\n-webkit-background-clip: text;\n-webkit-text-fill-color: transparent;`
     }
 }
 
