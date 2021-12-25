@@ -101,17 +101,17 @@ main_btn.onclick = () => {
         nick.style = "" // Убирает стили перед новыми
         if (color_is_active === 1) {
             nick.style.color = colorAttr
-            col_style = `color: ${colorAttr}`
+            col_style = `color: ${colorAttr};`
         }
         if (shadow_is_active === 1) {
             nick.style.textShadow = shadowAttr
-            sh_style = `text-shadow: ${shadowAttr}`
+            sh_style = `text-shadow: ${shadowAttr};`
         }
         if (background_is_active === 1) {
             nick.style.background = backgroundAttr
             nick.style.setProperty('-webkit-background-clip', 'text')
             nick.style.setProperty('-webkit-text-fill-color', 'transparent')
-            bg_style = `background: ${backgroundAttr}\n-webkit-background-clip: text;\n-webkit-text-fill-color: transparent;`
+            bg_style = `background: ${backgroundAttr};\n-webkit-background-clip: text;\n-webkit-text-fill-color: transparent;`
         }
         if (color_is_active === 0 && background_is_active === 0 && shadow_is_active === 0) {
             textarea.innerHTML = 'Выбери хотя бы один атрибут!'
