@@ -307,20 +307,20 @@ settings_btn.onclick = () => {
 }
 
 // СНЕГ НА СТРАНИЦЕ
-setInterval(createSnowflake, 100)
+// setInterval(createSnowflake, 100)
 
-function createSnowflake() {
-    const snow_flake = document.createElement('i');
-    snow_flake.classList.add('fas');
-    snow_flake.classList.add('fa-snowflake');
-    snow_flake.style.left = Math.random() * (window.innerWidth - 30) + 'px';
-    snow_flake.style.animationDuration = Math.random() * 3 + 5 + 's';
-    snow_flake.style.opacity = Math.random();
+// function createSnowflake() {
+//     const snow_flake = document.createElement('i');
+//     snow_flake.classList.add('fas');
+//     snow_flake.classList.add('fa-snowflake');
+//     snow_flake.style.left = Math.random() * (window.innerWidth - 30) + 'px';
+//     snow_flake.style.animationDuration = Math.random() * 3 + 5 + 's';
+//     snow_flake.style.opacity = Math.random();
 
-    document.body.appendChild(snow_flake);
+//     document.body.appendChild(snow_flake);
 
-    setTimeout(() => {
-        snow_flake.remove();
-    }, 4000)
-}
+//     setTimeout(() => {
+//         snow_flake.remove();
+//     }, 4000)
+// }
 // СНЕГ НА СТРАНИЦЕ
