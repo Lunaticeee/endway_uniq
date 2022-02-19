@@ -1,3 +1,4 @@
+
 body {
     margin: 0;
     background-color: #303030;
@@ -9,7 +10,7 @@ body {
     width: 100%;
     height: 100%;
     font-size: small;
-
+    overflow-x: hidden;
     /* Запрещение выделения */
 
     -webkit-touch-callout: none;
@@ -22,33 +23,66 @@ body {
      /* Запрещение выделения */
 }
 
-/* Снег */
-
-.fa-snowflake {
-    font-size: 8px;
-    animation: fall 8s linear forwards;
-    color: #fff;
-    position: absolute;
-    top: -20px;
+.flex
+{
+    display: flex;
 }
-
-@keyframes fall {
-    to {
-        transform: translateY(105vh);
-    }
+.jcc
+{
+    justify-content: center;
 }
-
-/* Снег */
+.aic
+{
+    align-items: center;
+}
 
 textarea:focus-visible {
     outline: rgb(34,142,93) solid 2px;
 }
 
-nav {
+header {
     background: rgb(39, 39, 39);
+    width:100%;
+    padding: 14px;
     height: 45px;
     text-align: center;
 }
+.header__container
+{
+    position: relative;
+    margin: auto;
+    width:100%;
+    max-width: 400px;
+    height: 100%;
+}
+.container
+{
+    flex-direction: column;
+    position: relative;
+    margin: auto;
+    min-width: 400px;
+    height: 85vh;
+}
+@media(max-width:430px){
+    .header__container
+    {
+        max-width: 100%;
+    }
+    #name
+    {
+        font-size: 5px;
+    }
+    .container{
+        min-width: 200px;
+        height: 70vh;
+    }
+    #styles-area
+    {
+        max-width:300px;
+    }
+}
+
+
 
 a {
     text-decoration: none;
@@ -61,10 +95,9 @@ a:hover {
 }
 
 #name {
-    font-size: 18pt;
-    font-weight: bold;
+    font-size: 24px;
+    font-weight: 600;
     color: rgb(34,142,93);
-    line-height: 50px;
 }
 
 .styles {
@@ -73,6 +106,7 @@ a:hover {
 
 #styles-area {
     font-weight: bold;
+    padding: 20px;
     font-size: 13px;
     width: 360px;
     height: 240px;
@@ -176,9 +210,11 @@ a:hover {
 }
 
 .footer {
-    height: 40px;
-    position: sticky;
-    top: 100%;
+    position: absolute;
+    width:100%;
+    padding: 10px;
+    bottom: 20px;
+    top: auto;
     color: #adadad;
 }
 
