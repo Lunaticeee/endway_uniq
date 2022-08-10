@@ -18,9 +18,13 @@ body {
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-     user-select: none;
+    user-select: none;
 
      /* Запрещение выделения */
+}
+
+textarea {
+    overflow: hidden;
 }
 
 .flex
@@ -136,8 +140,22 @@ a:hover {
     font-size: 26px;
 }
 
+/* ORIGINAL HERE */
 #original {
-    margin-left: 50px;
+    color: rgb(214,214,214);
+    font-family: -apple-system,BlinkMacSystemFont,'Open Sans',HelveticaNeue,sans-serif;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
+    width: 100%;
+    line-height: 50px;
+    padding: 10px 0px 30px 0px;
+    background: none;
+    border-radius: 0;
+    border-width: 0;
+    border-style: none;
+    outline: none;
 }
 
 .btn {

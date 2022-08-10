@@ -1,4 +1,4 @@
-const medium_nickname = document.querySelector('#medium');
+const original_nickname = document.querySelector('#original');
 const nicks_array = document.querySelectorAll(".nickname");
 
 const main_btn = document.querySelector('#main-btn');
@@ -6,6 +6,10 @@ const prev_btn = document.querySelector('#prev-btn');
 const settings_btn = document.querySelector('#settings-btn')
 
 const textarea = document.querySelector('#styles-area');
+
+var input = document.querySelector('input');
+input.addEventListener('input', resizeInput);
+resizeInput.call(input);
 
 
 // Кнопки настроек
@@ -17,6 +21,10 @@ let color_is_active = 0
 let shadow_is_active = 1
 let background_is_active = 1
 
+
+function resizeInput() {
+    this.style.width = this.value.length + 10 + "ch";
+}
 
 document.querySelectorAll('.settings span').forEach(settings_button => {
     if (settings_button.innerText == 'color') {
@@ -65,16 +73,6 @@ changeBackgroundButton.onclick = () => {
 // Словарь с предыдущем стилем
 var prevStyle = new Map();
 
-// Смена ника при нажатии на средний span с ником
-medium_nickname.onclick = function() {
-    let question = prompt('Введите ник');
-    if (question.length > 0) {
-        nicks_array.forEach(nick => {
-            nick.innerText = question
-        })
-    }
-}
-
 // Замена стилей при клике и добавление стиля в TextArea
 main_btn.onclick = () => {
 
@@ -98,7 +96,8 @@ main_btn.onclick = () => {
     let bg_style = '';
 
     nicks_array.forEach(nick => {
-        nick.style = "" // Убирает стили перед новыми
+        // Убирает прошлый стиль перед новой генерацией
+        nick.style = ""
         if (color_is_active === 1) {
             nick.style.color = colorAttr
             col_style = `color: ${colorAttr};`
@@ -188,7 +187,7 @@ function random_color(type=NaN) {
     }
 }
 
-// генератор
+// генератор теней
 function shadowGenerator() {
     return `${randint(1, 6)}px ${randint(1, 6)}px ${randint(1, 10)}px ${random_color('rgba')}`
 }
@@ -198,7 +197,8 @@ function linearGradient() {
     const type = randint(1, 2)
     let string = `linear-gradient(${randint(-360, 360)}deg, `
     
-    if (type === 1) { // Градиент с неограниченным кол-вом цветов
+    // Градиент с неограниченным кол-вом цветов
+    if (type === 1) {
         let num = randint(1, 5)
         for (let i = 0; i < num + 1; i++) {
             if (i != num) {
@@ -209,7 +209,8 @@ function linearGradient() {
             }
         }
     }
-    if (type == 2) { // Обычный градиент из 2х цветов
+    // Обычный градиент из 2х цветов
+    if (type == 2) {
         string += `${random_color('rgba')} ${randint(0, 100)}%, ${random_color('rgba')} ${randint(0, 100)}%)`
     }
     return string
@@ -220,7 +221,8 @@ function radialGradient() {
     const type = 2
     let string = "radial-gradient("
 
-    if (type === 1) { // Градиент с неограниченным кол-вом цветов
+    // Градиент с неограниченным кол-вом цветов
+    if (type === 1) {
         let num = randint(1, 4)
         for (let i = 0; i < num + 1; i++) {
             if (i != num) {
@@ -231,7 +233,8 @@ function radialGradient() {
             }
         }
     }
-    if (type == 2) { // Обычный градиент из 2х цветов
+    // Обычный градиент из 2х цветов
+    if (type == 2) {
         let max = randint(10, 100)
         let min = randint(1, max)
         string += `circle ${randint(10, 100)}px, ${random_color('rgb')} ${min}%, ${random_color('rgb')} ${max}%)`
@@ -260,7 +263,8 @@ function backgroundFunc() {
     let string = ""
     const num = randint(1, 3)
     const type = randint(1, 4)
-    if (type == 1) { // Линейные градиенты
+    // Линейные градиенты
+    if (type == 1) {
         for (let i =0; i < num + 1; i++) {
             if (i != num) {
                 string += linearGradient() + ", "
@@ -270,7 +274,8 @@ function backgroundFunc() {
             }
         }
     }
-    if (type == 2) { // Радиальные градиенты
+    // Радиальные градиенты
+    if (type == 2) {
         for (let i =0; i < num + 1; i++) {
             if (i != num) {
                 string += radialGradient() + ", "
@@ -280,10 +285,12 @@ function backgroundFunc() {
             }
         }
     }
-    if (type == 3) { // Одиночный линейный градиент
+    // Одиночный линейный градиент
+    if (type == 3) {
         string += linearGradient()
     }
-    if (type == 4) { // Одиночный радиальный градиент
+    // Одиночный радиальный градиент
+    if (type == 4) {
         string += radialGradient()
     }
 
@@ -305,22 +312,3 @@ settings_btn.onclick = () => {
         settings.classList.add('hide')
     }
 }
-
-// СНЕГ НА СТРАНИЦЕ
-// setInterval(createSnowflake, 100)
-
-// function createSnowflake() {
-//     const snow_flake = document.createElement('i');
-//     snow_flake.classList.add('fas');
-//     snow_flake.classList.add('fa-snowflake');
-//     snow_flake.style.left = Math.random() * (window.innerWidth - 30) + 'px';
-//     snow_flake.style.animationDuration = Math.random() * 3 + 5 + 's';
-//     snow_flake.style.opacity = Math.random();
-
-//     document.body.appendChild(snow_flake);
-
-//     setTimeout(() => {
-//         snow_flake.remove();
-//     }, 4000)
-// }
-// СНЕГ НА СТРАНИЦЕ
